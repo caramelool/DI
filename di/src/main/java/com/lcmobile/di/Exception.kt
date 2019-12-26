@@ -14,6 +14,4 @@ class DIMultiplesException(
     name: String
 ) : RuntimeException("multiples dependencies found for $className with name \"$name\"")
 
-class DIParameterException(
-    parameter: String
-) : RuntimeException("parameter \"$parameter\" not found")
+class DIParameterException : RuntimeException("parameter not found")

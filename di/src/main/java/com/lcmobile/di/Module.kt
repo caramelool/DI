@@ -27,7 +27,7 @@ class Module internal constructor(arg: List<Module>) {
     inline fun <reified T : Any> provide(
         name: String = "",
         single: Boolean = false,
-        noinline block: Parameter.() -> T
+        noinline block: (Parameter) -> T
     ) {
         val dependency = Dependency(T::class, name, single, block)
         dependencies.add(dependency)

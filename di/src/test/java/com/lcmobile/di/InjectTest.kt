@@ -27,9 +27,8 @@ private val testModule = moduleOf(coreModule) {
         10f
     }
 
-    provide(name = "scope") {
+    provide(name = "scope") { (scope: String) ->
         val name = get<String>()
-        val scope = parameter<String>("scope")
         "$name - $scope"
     }
 
@@ -38,7 +37,7 @@ private val testModule = moduleOf(coreModule) {
     }
 
     provide {
-        val name = get<String>("scope", parameterOf("scope" to "scope"))
+        val name = get<String>("scope", parameterOf("scope"))
         Scope(name)
     }
 }
@@ -61,9 +60,9 @@ class InjectTest : Injectable {
 
     @Test
     fun `test injection parameter`() {
-        val param = "scope"
-        val value = get<String>("scope", parameterOf("scope" to param))
-        assertEquals("Test - $param", value)
+        val scope = "scope"
+        val value = get<String>("scope", parameterOf(scope))
+        assertEquals("Test - $scope", value)
     }
 
     @Test
